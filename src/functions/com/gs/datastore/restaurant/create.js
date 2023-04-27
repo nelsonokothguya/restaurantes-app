@@ -1,8 +1,8 @@
 // create.js
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-module.exports = async function create(data) {
+export default async function create(data) {
   try {
     const newRestaurant = await prisma.restaurant.create({ data });
     return newRestaurant;

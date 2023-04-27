@@ -1,5 +1,5 @@
 // search.js
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function getMenuItemsByCouponCode(restaurantId, couponCode) {
@@ -17,7 +17,7 @@ async function getMenuItemsByCouponCode(restaurantId, couponCode) {
   }
 }
 
-module.exports = async function search(params) {
+export default async function search(params) {
   try {
     const { city, couponCode } = params;
     const restaurants = await prisma.restaurant.findMany({

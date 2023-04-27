@@ -1,8 +1,8 @@
 // delete.js
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-module.exports = async function deleteRestaurant(id) {
+export default async function deleteRestaurant(id) {
   try {
     const deletedRestaurant = await prisma.restaurant.delete({ where: { id } });
     return deletedRestaurant;

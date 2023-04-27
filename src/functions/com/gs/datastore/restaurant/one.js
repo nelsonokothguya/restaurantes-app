@@ -1,8 +1,8 @@
 // one.js
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-module.exports = async function one(id) {
+export default async function one(id) {
   try {
     const restaurant = await prisma.restaurant.findUnique({
       where: { id },
