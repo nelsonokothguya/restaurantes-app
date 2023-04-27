@@ -1,0 +1,139 @@
+openapi: 3.0.0
+info:
+  title: Restaurant API
+  version: 1.0.0
+paths:
+  /postgres/restaurant/{id}:
+    get:
+      summary: Fetch Restaurant
+      description: Fetch Restaurant from database
+      operationId: com.biz.postgres.restaurant.one
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+
+    put:
+      summary: Update a Restaurant
+      description: Update Restaurant from database
+      operationId: com.biz.postgres.restaurant.update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Restaurant'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+
+    delete:
+      summary: Delete a Restaurant
+      description: Delete Restaurant from database
+      operationId: com.biz.postgres.restaurant.delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /postgres/restaurant:
+    post:
+      summary: Create a new Restaurant
+      description: Create Restaurant from database
+      operationId: com.biz.postgres.restaurant.create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Restaurant'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /postgres/restaurant/search:
+    post:
+      summary: Fetch multiple Restaurant
+      description: Fetch multiple Restaurant from database
+      operationId: com.biz.postgres.restaurant.search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+
+components:
+  schemas:
+    Restaurant:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        since:
+          type: string
+          format: date-time
+        isOpen:
+          type: boolean
+          default: false
+        opsStartTime:
+          type: string
+          format: date-time
+        opsEndTime:
+          type: string
+          format: date-time
+        ownerId:
+          type: integer
+          nullable: true
+        slug:
+          type: string
+        description:
+          type: string
+          nullable: true
+        location:
+          type: string
+        city:
+          type: string
+          nullable: true

@@ -1,0 +1,120 @@
+openapi: 3.0.0
+info:
+  title: MenuItems API
+  version: 1.0.0
+paths:
+  /postgres/menuitems/{id}:
+    get:
+      summary: Fetch MenuItems
+      description: Fetch MenuItems from database
+      operationId: com.biz.postgres.menuitems.one
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Update a MenuItems
+      description: Update MenuItems from database
+      operationId: com.biz.postgres.menuitems.update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuItems'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      summary: Delete a MenuItems
+      description: Delete MenuItems from database
+      operationId: com.biz.postgres.menuitems.delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /postgres/menuitems:
+    post:
+      summary: Create a new MenuItems
+      description: Create MenuItems from database
+      operationId: com.biz.postgres.menuitems.create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuItems'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /postgres/menuitems/search:
+    post:
+      summary: Fetch multiple MenuItems
+      description: Fetch multiple MenuItems from database
+      operationId: com.biz.postgres.menuitems.search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+
+components:
+  schemas:
+    MenuItems:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        price:
+          type: number
+        available:
+          type: boolean
+          default: true
+      required:
+        - name
+        - price

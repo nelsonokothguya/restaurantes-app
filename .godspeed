@@ -1,0 +1,1 @@
+{"projectName":"restaurantes-app","mongodb":false,"postgresql":true,"postgresDbName":"restaurantes","kafka":false,"elasticsearch":false,"redis":false,"svcPort":3000,"postgresDbPort":5432}
